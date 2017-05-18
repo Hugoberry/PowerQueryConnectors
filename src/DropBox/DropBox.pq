@@ -23,6 +23,18 @@ shared DropBox.Contents = (path as text) =>
         json=Json.Document(content)
     in
         json;
+[DataSource.Kind="DropBox"]
+shared DropBox.File = (path as text) => 
+    let
+       key = Extension.CurrentCredential()[access_token],
+       content = Web.Contents("https://content.dropboxapi.com/2/files/download",[
+            Headers=[#"Content-type" = "application/json", 
+                    #"Dropbox-API-Arg"=Text.FromBinary(Json.FromValue([path = path])),
+                    #"Authorization" = "Bearer " & key]]),
+        json=content
+    in
+        json;
+
 
 // Data Source Kind description
 DropBox = [
