@@ -8,7 +8,7 @@ redirectUrl = "https://preview.powerbi.com/views/oauthredirect.html";
 windowWidth = 720;
 windowHeight = 1024;
 
-/*
+
 [DataSource.Kind="DropBox", Publish="DropBox.Publish"]
 shared DropBox.Contents = (path as text) =>
     let
@@ -21,16 +21,17 @@ shared DropBox.Contents = (path as text) =>
                     include_deleted=false,
                     include_has_explicit_shared_members=false]),
             Headers=[#"Content-type" = "application/json", #"Authorization" = "Bearer " & key]]),
-        json=Json.Document(content)
+        json=Json.Document(content),
+        out = Table.FromRecords(json[entries])
     in
-        json;
-*/
-[DataSource.Kind="DropBox", Publish="DropBox.Publish"]
-shared DropBox.File = (file as text) => 
+        out;
+
+[DataSource.Kind="DropBox"]
+shared DropBox.File = (path as text) => 
     let
        key = Extension.CurrentCredential()[access_token],
        content = Web.Contents("https://content.dropboxapi.com/2/files/download",[
-            Headers=[#"Dropbox-API-Arg"=Text.FromBinary(Json.FromValue([path=file])),
+            Headers=[#"Dropbox-API-Arg"=Text.FromBinary(Json.FromValue([path=path])),
                     #"Authorization" = "Bearer " & key]]),
         json=content
     in
