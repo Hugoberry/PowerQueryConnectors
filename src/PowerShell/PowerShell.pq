@@ -2,10 +2,10 @@
 section PowerShell;
 
 [DataSource.Kind="PowerShell", Publish="PowerShell.Publish"]
-shared PowerShell.Execute = (optional filePath as text) =>
+shared PowerShell.Execute = (filePath as text) =>
     let
-        folder = filePath,
-        file = filePath,
+        folder = Text.BeforeDelimiter(filePath,"\", {0, RelativePosition.FromEnd}),
+        file = Text.BetweenDelimiters(filePath,"\", ".", {0, RelativePosition.FromEnd}, 0),
         out = AdoDotNet.Query("System.Data.CData.PowerShell","ScriptLocation='"&folder&"';ExecuteQuery=True","select * from "&file)
     in
         out;
@@ -13,9 +13,6 @@ shared PowerShell.Execute = (optional filePath as text) =>
 // Data Source Kind description
 PowerShell = [
     Authentication = [
-        // Key = [],
-        // UsernamePassword = [],
-        // Windows = [],
         Implicit = []
     ],
     Label = Extension.LoadString("DataSourceLabel")

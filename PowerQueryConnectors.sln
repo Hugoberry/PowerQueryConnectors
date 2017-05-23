@@ -3,12 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26507.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{4DF76451-A46A-4C0B-BE03-459FAAFA07E6}") = "DropBox", "src\DropBox\DropBox.mproj", "{6F6B253C-1106-4712-B200-192B2EA0699B}"
+Project("{4DF76451-A46A-4C0B-BE03-459FAAFA07E6}") = "DropBox", "src\DropBox\DropBox.mproj", "{00544316-141A-4286-B621-41FE4368B284}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FBD1B4C8-F9CB-4BE9-9873-D31FB8F69613}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{4DF76451-A46A-4C0B-BE03-459FAAFA07E6}") = "PowerShell", "src\PowerShell\PowerShell.mproj", "{AA8F7CC0-37C9-4BE2-B168-E5342A7889B3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -16,10 +18,14 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6F6B253C-1106-4712-B200-192B2EA0699B}.Debug|x86.ActiveCfg = Debug|x86
-		{6F6B253C-1106-4712-B200-192B2EA0699B}.Debug|x86.Build.0 = Debug|x86
-		{6F6B253C-1106-4712-B200-192B2EA0699B}.Release|x86.ActiveCfg = Release|x86
-		{6F6B253C-1106-4712-B200-192B2EA0699B}.Release|x86.Build.0 = Release|x86
+		{00544316-141A-4286-B621-41FE4368B284}.Debug|x86.ActiveCfg = Debug|x86
+		{00544316-141A-4286-B621-41FE4368B284}.Debug|x86.Build.0 = Debug|x86
+		{00544316-141A-4286-B621-41FE4368B284}.Release|x86.ActiveCfg = Release|x86
+		{00544316-141A-4286-B621-41FE4368B284}.Release|x86.Build.0 = Release|x86
+		{AA8F7CC0-37C9-4BE2-B168-E5342A7889B3}.Debug|x86.ActiveCfg = Debug|x86
+		{AA8F7CC0-37C9-4BE2-B168-E5342A7889B3}.Debug|x86.Build.0 = Debug|x86
+		{AA8F7CC0-37C9-4BE2-B168-E5342A7889B3}.Release|x86.ActiveCfg = Release|x86
+		{AA8F7CC0-37C9-4BE2-B168-E5342A7889B3}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
