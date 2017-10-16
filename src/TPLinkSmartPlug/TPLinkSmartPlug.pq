@@ -6,50 +6,50 @@ GUID = "72fc1bfa-d102-42a3-a394-eb6687e3ed19";
 [DataSource.Kind="TPLinkSmartPlug", Publish="TPLinkSmartPlug.Publish"]
 shared TPLinkSmartPlug.Devices = () =>
         let
-            Credential = Extension.CurrentCredential(),
-            payload = [method= "login",
-                  params= [
-                             appType= "Kasa_Android",
-                             cloudUserName=Credential[Username],
-                             cloudPassword=Credential[Password],
-                             terminalUUID= GUID
-                            ]
-                ],
-            first= Web.Contents("https://wap.tplinkcloud.com", [Content=Json.FromValue(payload)]),
-            tok = Json.Document(first)[result][token],
-            source = Web.Contents("https://wap.tplinkcloud.com",[Query=[token = tok],Content = Json.FromValue([method="getDeviceList"])]),
-            response = Json.Document(source)[result][deviceList]{0},
-            objects = #table(
+            credential = Extension.CurrentCredential(),
+            payload = [ method= "login",
+                        params= [
+                                 appType= "Kasa_Android",
+                                 cloudUserName=credential[Username],
+                                 cloudPassword=credential[Password],
+                                 terminalUUID= GUID
+                                ]
+                        ],
+            tokenRequest = Web.Contents("https://wap.tplinkcloud.com", [Content=Json.FromValue(payload)]),
+            token = Json.Document(tokenRequest)[result][token],
+            devicesRequest = Web.Contents("https://wap.tplinkcloud.com",[Query=[token = token],Content = Json.FromValue([method="getDeviceList"])]),
+            devicesList = Json.Document(devicesRequest)[result][deviceList]{0},
+            devicesTable = #table(
                                 {"Name", "Key", "Data", "ItemKind", "ItemName", "IsLeaf"},{
-                                {response[alias],response[deviceId], TPLinkSmartPlug.Device(response[deviceId]), "Table", "Table",    true}
+                                {devicesList[alias],devicesList[deviceId], TPLinkSmartPlug.DeviceInfo(devicesList[deviceId]), "Table", "Table",    true}
                              }),
-            navTable = Table.ToNavigationTable(objects, {"Key"}, "Name", "Data", "ItemKind", "ItemName", "IsLeaf")
+            devicesNavigation = Table.ToNavigationTable(devicesTable, {"Key"}, "Name", "Data", "ItemKind", "ItemName", "IsLeaf")
         in 
-            navTable;
+            devicesNavigation;
 
-shared TPLinkSmartPlug.Device = (deviceId as text) =>
+TPLinkSmartPlug.DeviceInfo = (deviceId as text) =>
         let
-            Credential = Extension.CurrentCredential(),
-            payload = [method= "login",
-                  params= [
-                             appType= "Kasa_Android",
-                             cloudUserName=Credential[Username],
-                             cloudPassword=Credential[Password],
-                             terminalUUID= GUID
-                            ]
-                ],
-            first= Web.Contents("https://wap.tplinkcloud.com", [Content=Json.FromValue(payload)]),
-            tok = Json.Document(first)[result][token],
-            statsRequest = [method="passthrough",
-            params=[deviceId=deviceId,
-                    requestData=Json.FromValue([system=[get_sysinfo="null"]])
-                ]
-            ],
-            source = Web.Contents("https://wap.tplinkcloud.com",[Query=[token = tok],Content = Json.FromValue(statsRequest)]),
-            response = Record.ToTable(Json.Document(Json.Document(source)[result][responseData])[system][get_sysinfo])
+            credential = Extension.CurrentCredential(),
+            payload = [ method= "login",
+                        params= [
+                                 appType= "Kasa_Android",
+                                 cloudUserName=credential[Username],
+                                 cloudPassword=credential[Password],
+                                 terminalUUID= GUID
+                                ]
+                        ],
+            tokenRequest = Web.Contents("https://wap.tplinkcloud.com", [Content=Json.FromValue(payload)]),
+            token = Json.Document(tokenRequest)[result][token],
+            statsPayload = [ method="passthrough",
+                             params=[ deviceId=deviceId,
+                                     requestData=Json.FromValue([system=[get_sysinfo="null"]])
+                                    ]
+                            ],
+            statsRequest = Web.Contents("https://wap.tplinkcloud.com",[Query=[token = token],Content = Json.FromValue(statsPayload)]),
+            statsResponse = Json.Document(Json.Document(statsRequest)[result][responseData])[system],
+            stats = if statsResponse[get_sysinfo]?=null then Record.ToTable(statsResponse) else Record.ToTable(statsResponse[get_sysinfo])
         in 
-            response;
-
+            stats;
 
 // Data Source Kind description
 TPLinkSmartPlug = [
