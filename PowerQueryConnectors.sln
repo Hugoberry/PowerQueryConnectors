@@ -1,16 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26507.0
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{4DF76451-A46A-4C0B-BE03-459FAAFA07E6}") = "DropBox", "src\DropBox\DropBox.mproj", "{00544316-141A-4286-B621-41FE4368B284}"
+Project("{4DF76451-A46A-4C0B-BE03-459FAAFA07E6}") = "DropBox", "src\DropBox\DropBox.mproj", "{D4FAC38F-8819-4EF8-925B-DCAA7BEC7EC8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FBD1B4C8-F9CB-4BE9-9873-D31FB8F69613}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{4DF76451-A46A-4C0B-BE03-459FAAFA07E6}") = "PowerShell", "src\PowerShell\PowerShell.mproj", "{AA8F7CC0-37C9-4BE2-B168-E5342A7889B3}"
+Project("{4DF76451-A46A-4C0B-BE03-459FAAFA07E6}") = "PowerShell", "src\PowerShell\PowerShell.mproj", "{B07A6B44-66FC-4066-A45A-DEE1C14D2FC2}"
+EndProject
+Project("{4DF76451-A46A-4C0B-BE03-459FAAFA07E6}") = "TPLinkSmartPlug", "src\TPLinkSmartPlug\TPLinkSmartPlug.mproj", "{3AD9CC40-B62B-4F9D-9E8D-81B4847BE17E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,16 +20,23 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{00544316-141A-4286-B621-41FE4368B284}.Debug|x86.ActiveCfg = Debug|x86
-		{00544316-141A-4286-B621-41FE4368B284}.Debug|x86.Build.0 = Debug|x86
-		{00544316-141A-4286-B621-41FE4368B284}.Release|x86.ActiveCfg = Release|x86
-		{00544316-141A-4286-B621-41FE4368B284}.Release|x86.Build.0 = Release|x86
-		{AA8F7CC0-37C9-4BE2-B168-E5342A7889B3}.Debug|x86.ActiveCfg = Debug|x86
-		{AA8F7CC0-37C9-4BE2-B168-E5342A7889B3}.Debug|x86.Build.0 = Debug|x86
-		{AA8F7CC0-37C9-4BE2-B168-E5342A7889B3}.Release|x86.ActiveCfg = Release|x86
-		{AA8F7CC0-37C9-4BE2-B168-E5342A7889B3}.Release|x86.Build.0 = Release|x86
+		{D4FAC38F-8819-4EF8-925B-DCAA7BEC7EC8}.Debug|x86.ActiveCfg = Debug|x86
+		{D4FAC38F-8819-4EF8-925B-DCAA7BEC7EC8}.Debug|x86.Build.0 = Debug|x86
+		{D4FAC38F-8819-4EF8-925B-DCAA7BEC7EC8}.Release|x86.ActiveCfg = Release|x86
+		{D4FAC38F-8819-4EF8-925B-DCAA7BEC7EC8}.Release|x86.Build.0 = Release|x86
+		{B07A6B44-66FC-4066-A45A-DEE1C14D2FC2}.Debug|x86.ActiveCfg = Debug|x86
+		{B07A6B44-66FC-4066-A45A-DEE1C14D2FC2}.Debug|x86.Build.0 = Debug|x86
+		{B07A6B44-66FC-4066-A45A-DEE1C14D2FC2}.Release|x86.ActiveCfg = Release|x86
+		{B07A6B44-66FC-4066-A45A-DEE1C14D2FC2}.Release|x86.Build.0 = Release|x86
+		{3AD9CC40-B62B-4F9D-9E8D-81B4847BE17E}.Debug|x86.ActiveCfg = Debug|x86
+		{3AD9CC40-B62B-4F9D-9E8D-81B4847BE17E}.Debug|x86.Build.0 = Debug|x86
+		{3AD9CC40-B62B-4F9D-9E8D-81B4847BE17E}.Release|x86.ActiveCfg = Release|x86
+		{3AD9CC40-B62B-4F9D-9E8D-81B4847BE17E}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {06350C62-3DE8-4D0B-BCAD-376FDCA66C60}
 	EndGlobalSection
 EndGlobal
